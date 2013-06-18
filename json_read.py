@@ -4,7 +4,7 @@ import json
 import pprint
 from netaddr import *
 
-json_data = open('object.json')
+json_data = open('example.json')
 json_object = json.load(json_data)
 
 
@@ -12,10 +12,17 @@ json_object = json.load(json_data)
 
 
 # read network_layer from object 
+def get_ip():
+  json_ip = json_object["address"]["src"]["network_layer"]["ip_address"]
+  temp = json_ip.replace("{", "")
+  temp = json_ip.replace("}", "")
+  temp = json_ip.replace("[", "")
+  temp = json_ip.replace("]", "")
+  temp = json_ip.replace("u", "")
+  temp = json_ip.replace(",", "")
+  print(temp)
 
-json_object_network = json_object["address"]["src"]["network_layer"]["ip_address"]
 
-print(json_object_network)
 
   #define it is ipv4 or ipv6
 
