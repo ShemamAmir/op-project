@@ -1,44 +1,51 @@
 {
-    "src_info": {
-        "transport_layer": {
-            "tcp_address": [
-                {}
-            ],
-            "dccp_address": [
-                {}
-            ]
+    "address": {
+        "src": {
+            "transport_layer": {
+                "tcp_address": [
+                    {}
+                ],
+                "dccp_address": [
+                    {}
+                ]
+            },
+            "network_layer": {
+                "ipv4_address": [
+                    {}
+                ],
+                "ipv6_address": [
+                    {}
+                ]
+            },
+            "data_link_layer": {
+                "value": [
+                    {}
+                ]
+            },
+            "Physical layer": {
+                "swirch_dpid": [
+                    {}
+                ]
+            }
         },
-        "network_layer": {
-            "ipv4_address": [
-                {}
-            ],
-            "ipv6_address": [
-                {}
-            ]
-        },
-        "data_link_layer": {
-            "unknown_5": [
-                {}
-            ]
-        },
-        "Physical layer": {
-            "unknown_6": [
-                {}
-            ]
+        "dst": {
+            "transport_layer": {
+                "tcp_address": "value",
+                "dccp_address": "value"
+            },
+            "network_layer": {
+                "ipv4_address": "value",
+                "ipv6_ddress": "value"
+            },
+            "data_link_layer": "value",
+            "physical_layer": {
+                "switch_dpid": "port_number"
+            }
         }
     },
-    "dst_info": {
-        "transport_layer": {
-            "tcp_address": "value",
-            "dccp_address": "value"
-        },
-        "network_layer": {
-            "ipv4_address": "value",
-            "ipv6_ddress": "value"
-        },
-        "data_link_layer": "value",
-        "physical_layer": {
-            "switch_dpid": "port_number"
-        }
+    "flow_control": {
+        "unknown": true,
+        "allow": true,
+        "bandwidth": "value"
     }
 }
