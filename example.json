@@ -2,32 +2,32 @@
     "address": {
         "src": {
             "transport_layer": {
-                "tcp_address": [
+                "tcp_address": 
                     {}
-                ],
-                "dccp_address": [
+                ,
+                "dccp_address": 
                     {}
-                ]
+                
             },
             "network_layer": {
-                "ip_address": [
+                "ip_address": 
                     {
                         "app_1": "192.168.0.1",
                         "app_2": "192.168.2.4/24",
                         "app_3": "ad;lj;a;lj",
                         "app_4": "fe80:0:0:0:0:0:c0a8:1"
                     }
-                ]
+                
             },
             "data_link_layer": {
-                "value": [
+                "value": 
                     {}
-                ]
+                
             },
             "Physical layer": {
-                "swirch_dpid": [
+                "swirch_dpid": 
                     {}
-                ]
+                
             }
         },
         "dst": {
