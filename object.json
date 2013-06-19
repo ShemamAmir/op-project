@@ -2,27 +2,27 @@
     "address": {
         "src": {
             "transport_layer": {
-                "tcp_address": [
+                "tcp_address": 
                     {}
-                ],
-                "dccp_address": [
+                ,
+                "dccp_address": 
                     {}
-                ]
+                
             },
             "network_layer": {
-                "ip_address": [
+                "ip_address": 
                     {}
-                ]
+                
             },
             "data_link_layer": {
-                "value": [
+                "value": 
                     {}
-                ]
+                
             },
             "Physical layer": {
-                "swirch_dpid": [
+                "swirch_dpid": 
                     {}
-                ]
+                
             }
         },
         "dst": {
