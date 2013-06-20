@@ -10,7 +10,7 @@ from pox.lib.addresses import IPAddr, EthAddr
 def load_json(name):
   json_data = open(name)
   json_object = json.load(json_data) #type: dict. 
-  return json_object json_data
+  return json_object, json_data
 
 
 # read transport_layer from object
