@@ -92,10 +92,27 @@ class get_json(object):
       return port_src_list, port_dst_list
     
 
+      def check_unknown(self):
+        #check the flow table 
       
-      
+#When the flag: many_to_point = true
+
+class route_scheme(object):
+  
+  def __init__(self, name):
+    self.name = name
+        
+  def low_ult(self):
     
-       
+    
+  def low_rtt(self):
+    
+    
+  def low_priority(self):
+    
+    
+    
+    
     #check the format is ipv4, ipv6 or else
     #take out the ips that are ipv4
     #take out the ips taht are ipv6
