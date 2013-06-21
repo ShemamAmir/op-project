@@ -6,6 +6,7 @@ import json
 from pox.lib.addresses import IPAddr, EthAddr
 from netaddr import *
 import socket
+import pox.lib.packet as pkt
 
 class get_json(object):
   
@@ -34,6 +35,16 @@ class get_json(object):
       except socket.error:
         print(value + 'it is not an valid IP Address')
         # Not legal
+    for key, value in json_dst_ip.iteritems():
+    #test validation for src ip address
+      try:
+        socket.inet_aton(str(value))
+        ip_dst_list.append(IPAddr(str(value)))
+        # legal
+      except socket.error:
+        print(value + 'it is not an valid IP Address')
+        # Not legal
+    return ip_src_list, ip_dst_list
         
     #test validation for dst ip address    
     try:
@@ -56,6 +67,7 @@ class get_json(object):
       for key, value in json_dst_tcp():
         tcp_src_list.append(str(json_dst_tcp))      
       #http://ciscoiseasy.blogspot.com/2010/08/lesson-6-example-of-tcpip-traffic-flow.html
+      return tcp_src_list, tcp_dst_list
       
     def get_mac(self):
       json_src_mac = self.load_json()['address']['src']['data_link_layer']['mac_address']
@@ -66,6 +78,7 @@ class get_json(object):
         mac_src_list.append(str(json_src_tcp))        
       for key, value in json_dst_mac():
         mac_src_list.append(str(json_dst_tcp))    
+      return mac_src_list, mac_dst_list
         
     def get_port(self):
       json_src_port = self.load_json()['address']['src']['physical_layer']['switch_dpid']
@@ -75,10 +88,10 @@ class get_json(object):
       for key, value in json_src_port():
         port_src_list.append(str(json_src_port))        
       for key, value in json_dst_mac():
-        port_src_list.append(str(json_dst_port))       
+        port_src_list.append(str(json_dst_port))  
+      return port_src_list, port_dst_list
     
-  #def get_dst_ip(self)
-  #def get_src_
+
       
       
     
@@ -103,5 +116,6 @@ class get_json(object):
 
 
 def launch( allow_unknown = True ):
-  core.RegisterNew(class_name_tbd, class(input)) #core.Register(object_name, class(input)) register  object and core. RegisterNew(class_name, input) pass a class
+  core.Register(get_json, xxxxxx)) 
+  #core.Register(object_name, class(input)) register  object and core. RegisterNew(class_name, input) pass a class
 
