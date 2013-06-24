@@ -100,7 +100,7 @@ class get_json(object):
           self.load_json()['flow_control']['allow'] = json.dumps(True)
           
 
-      def check(self):
+      def check_many(self):
         if len(ip_src_list) > 1 or len(mac_src_list) > 1 or len(port_src_list) > 1 or len(tcp_src_list) > 1 :
           many_to_point = True
           self.load_json()['flow_control']['many_to_point'] = json.dumps(True)
