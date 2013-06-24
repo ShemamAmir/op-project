@@ -117,12 +117,15 @@ class route_scheme(object):
     self.name = name
         
   def low_ult(self):
+  #utilization % = (data bits x 100) / (bandwidth x interval)
     
     
   def low_rtt(self):
-    
+  #lowest ping time
+  #make srcs ping with random order and set the rule by the ping time, dynamic rule
     
   def low_priority(self):
+  #define priority
     
     
     
