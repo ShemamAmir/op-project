@@ -54,64 +54,65 @@ class get_json(object):
       except socket.error:
         print(value + 'it is not an valid IP Address')
         # Not legal    
-    
-    def get_tcp(self):
-      json_src_tcp = self.load_json()['address']['src']['transport_layer']['tcp_address']
-      json_dst_tcp = self.load_json()['address']['dst']['transport_layer']['tcp_address']
-      tcp_src_list = []
-      tcp_dst_list = []
+
+  
+  def get_tcp(self):
+    json_src_tcp = self.load_json()['address']['src']['transport_layer']['tcp_address']
+    json_dst_tcp = self.load_json()['address']['dst']['transport_layer']['tcp_address']
+    tcp_src_list = []
+    tcp_dst_list = []
       #http://en.wikipedia.org/wiki/Transmission_Control_Protocol
       #TODO? SRC_PORT, DST_PORT, SEQ, ACK= ?
-      for key, value in json_src_tcp():
-        tcp_src_list.append(str(json_src_tcp))        
-      for key, value in json_dst_tcp():
-        tcp_src_list.append(str(json_dst_tcp))      
+    for key, value in json_src_tcp():
+      tcp_src_list.append(str(json_src_tcp))        
+    for key, value in json_dst_tcp():
+      tcp_src_list.append(str(json_dst_tcp))      
       #http://ciscoiseasy.blogspot.com/2010/08/lesson-6-example-of-tcpip-traffic-flow.html
-      return tcp_src_list, tcp_dst_list
+    return tcp_src_list, tcp_dst_list
       
-    def get_mac(self):
-      json_src_mac = self.load_json()['address']['src']['data_link_layer']['mac_address']
-      json_dst_mac = self.load_json()['address']['dst']['data_link_layer']['mac_address']
-      mac_src_list = []
-      mac_dst_list = []
-      for key, value in json_src_mac():
-        mac_src_list.append(str(json_src_tcp))        
-      for key, value in json_dst_mac():
-        mac_src_list.append(str(json_dst_tcp))    
-      return mac_src_list, mac_dst_list
-        
-    def get_port(self):
-      json_src_port = self.load_json()['address']['src']['physical_layer']['switch_dpid']
-      json_dst_port = self.load_json()['address']['dst']['physical_layer']['switch_dpid']
-      port_src_list = []
-      port_dst_list = []      
-      for key, value in json_src_port():
-        port_src_list.append(str(json_src_port))        
-      for key, value in json_dst_mac():
-        port_src_list.append(str(json_dst_port))  
-      return port_src_list, port_dst_list
+  def get_mac(self):
+    json_src_mac = self.load_json()['address']['src']['data_link_layer']['mac_address']
+    json_dst_mac = self.load_json()['address']['dst']['data_link_layer']['mac_address']
+    mac_src_list = []
+    mac_dst_list = []
+    for key, value in json_src_mac():
+      mac_src_list.append(str(json_src_tcp))        
+    for key, value in json_dst_mac():
+      mac_src_list.append(str(json_dst_tcp))    
+    return mac_src_list, mac_dst_list
+      
+  def get_port(self):
+    json_src_port = self.load_json()['address']['src']['physical_layer']['switch_dpid']
+    json_dst_port = self.load_json()['address']['dst']['physical_layer']['switch_dpid']
+    port_src_list = []
+    port_dst_list = []      
+    for key, value in json_src_port():
+      port_src_list.append(str(json_src_port))        
+    for key, value in json_dst_mac():
+      port_src_list.append(str(json_dst_port))  
+    return port_src_list, port_dst_list
     
 
-      def check_unknown(self):
-        #check the flow table 
-        if self.load_json()['flow_control']['unkown'] = True:
-          self.load_json()['flow_control']['allow'] = json.dumps(False)
-        else:
-          self.load_json()['flow_control']['allow'] = json.dumps(True)
+  def check_unknown(self):
+    #check the flow table 
+    if self.load_json()['flow_control']['unkown'] = True:
+      self.load_json()['flow_control']['allow'] = json.dumps(False)
+    else:
+      self.load_json()['flow_control']['allow'] = json.dumps(True)
           
 
-      def check_many(self):
-        if len(ip_src_list) > 1 or len(mac_src_list) > 1 or len(port_src_list) > 1 or len(tcp_src_list) > 1 :
-          many_to_point = True
-          self.load_json()['flow_control']['many_to_point'] = json.dumps(True)
-        else:
-          many_to_point = False
-          self.load_json()['flow_control']['many_to_point'] = json.dumps(False)      
+  def check_many(self):
+    if len(ip_src_list) > 1 or len(mac_src_list) > 1 or len(port_src_list) > 1 or len(tcp_src_list) > 1 :
+      many_to_point = True
+      self.load_json()['flow_control']['many_to_point'] = json.dumps(True)
+    else:
+      many_to_point = False
+      self.load_json()['flow_control']['many_to_point'] = json.dumps(False)      
 
       
 #When the flag: many_to_point = True
 
-class route_scheme(object):
+class route_scheme(object,many_to_point = True):
   
   def __init__(self, name):
     self.name = name
@@ -150,6 +151,6 @@ class route_scheme(object):
 
 
 def launch( allow_unknown = True ):
-  core.Register(get_json, xxxxxx)) 
+  core.RegisterNew(get_json)
   #core.Register(object_name, class(input)) register  object and core. RegisterNew(class_name, input) pass a class
 
