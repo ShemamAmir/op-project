@@ -43,6 +43,7 @@
     "flow_control": {
         "unknown": true,
         "allow": true,
+        "many_to_point": true,
         "bandwidth": "value"
     }
 }
