@@ -94,8 +94,22 @@ class get_json(object):
 
       def check_unknown(self):
         #check the flow table 
+        if self.load_json()['flow_control']['unkown'] = True:
+          self.load_json()['flow_control']['allow'] = json.dumps(False)
+        else:
+          self.load_json()['flow_control']['allow'] = json.dumps(True)
+          
+
+      def check(self):
+        if len(ip_src_list) > 1 or len(mac_src_list) > 1 or len(port_src_list) > 1 or len(tcp_src_list) > 1 :
+          many_to_point = True
+          self.load_json()['flow_control']['many_to_point'] = json.dumps(True)
+        else:
+          many_to_point = False
+          self.load_json()['flow_control']['many_to_point'] = json.dumps(False)      
+
       
-#When the flag: many_to_point = true
+#When the flag: many_to_point = True
 
 class route_scheme(object):
   
