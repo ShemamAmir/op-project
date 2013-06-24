@@ -6,10 +6,8 @@
                 "dccp_address": {}
             },
             "network_layer": {
-                "ip_address": {
                     "ipv4_address": {},
                     "ipv6_address": {}
-                }
             },
             "data_link_layer": {
                 "value": {}
