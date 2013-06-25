@@ -28,17 +28,16 @@ class get_json(object):
     ipv6_dst = []
     # we can use http://boubakr92.wordpress.com/2012/12/20/convert-cidr-into-ip-range-with-python/ or netaddr lib
     for key, value in json_src_ip.iteritems():  
-      ip_addr = IPAddress(str(value))
       ip_cidr = IPNetwork(str(value))
       ip = ip_cidr.ip,
       ip_network = ip_cidr.network
       ip_broadcast = ip_cidr.broadcast
       ip_netmask = ip_cidr.netmask
       ip_hostmask = ip_cidr.hostmask
-      ip_cidr = ip_cidr.size
+      ip_size = ip_cidr.size
       
-      ipv4_src.append(IPAddr(ip_addr.ipv4()))
-      ipv6_src.append(IPAddr(ip_addr.ipv6()))
+      ipv4_src.append(ip_cidr.ipv4())
+      ipv6_src.append(ip_cidr.ipv6())
      
     
     for key, value in json_dst_ip.iteritems():  
@@ -48,9 +47,9 @@ class get_json(object):
       ip_broadcast = ip_cidr.broadcast
       ip_netmask = ip_cidr.netmask
       ip_hostmask = ip_cidr.hostmask
-      ip_cidr = ip_cidr.size
-      ipv4_dst.append(IPAddr(ip_addr.ipv4()))
-      ipv6_dst.append(IPAddr(ip_addr.ipv6()))    
+      ip_size = ip_cidr.size
+      ipv4_dst.append(ip_addr.ipv4()))
+      ipv6_dst.append(ip_addr.ipv6()))    
     
 
   def get_tcp(self):
