@@ -111,11 +111,11 @@ class get_json(object):
       
 #When the flag: many_to_point = True
 
-class route_scheme(object, many_to_point = True):
+class route_scheme(object, many_to_point is True):
   
   def __init__(self, name):
     self.name = name
-        
+          
   def low_ult(self):
   #utilization % = (data bits x 100) / (bandwidth x interval)
     
@@ -131,9 +131,9 @@ class route_scheme(object, many_to_point = True):
     
     
     #check the format is ipv4, ipv6 or else
-    #take out the ips that are ipv4
-    #take out the ips taht are ipv6
-    #emerge them into a new dict.
+    #take out the ips that are ipv4    done
+    #take out the ips taht are ipv6    done
+    #emerge them into a new dict.      done
     #then the user can use get_src_ip(ipv4) to get ipv4
     #or get_src_ip(ipv6) to get ipv6
     #json.dump to import to the json file
