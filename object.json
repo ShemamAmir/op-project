@@ -18,16 +18,18 @@
         },
         "dst": {
             "transport_layer": {
-                "tcp_address": "value",
-                "dccp_address": "value"
+                "tcp_address": {},
+                "dccp_address": {}
             },
             "network_layer": {
-                "ip_address": "value"
-                
+                    "ip_address": {}
+                    
             },
-            "data_link_layer": "value",
-            "physical_layer": {
-                "switch_dpid": "port_number"
+            "data_link_layer": {
+                "value": {}
+            },
+            "Physical layer": {
+                "swirch_dpid": {}
             }
         }
     },
