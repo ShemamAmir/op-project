@@ -2,32 +2,21 @@
     "address": {
         "src": {
             "transport_layer": {
-                "tcp_address": 
-                    {}
-                ,
-                "dccp_address": 
-                    {}
-                
+                "tcp_address": {},
+                "dccp_address": {}
             },
             "network_layer": {
-                "ip_address": 
-                    {
-                        "app_1": "192.168.0.1",
-                        "app_2": "192.168.2.4/24",
-                        "app_3": "ad;lj;a;lj",
-                        "app_4": "fe80:0:0:0:0:0:c0a8:1"
-                    }
-                
+                "ip_address": {
+                    "ip_1": "192.168.0.1",
+                    "ip_2": "192.168.3.112/24",
+                    "ip_3": "fe80::ffff:ffff:ffff:ffff"
+                }
             },
             "data_link_layer": {
-                "value": 
-                    {}
-                
+                "value": {}
             },
             "Physical layer": {
-                "swirch_dpid": 
-                    {}
-                
+                "swirch_dpid": {}
             }
         },
         "dst": {
@@ -36,8 +25,7 @@
                 "dccp_address": "value"
             },
             "network_layer": {
-                "ipv4_address": "value",
-                "ipv6_ddress": "value"
+                "ip_address": "value"
             },
             "data_link_layer": "value",
             "physical_layer": {
@@ -48,6 +36,7 @@
     "flow_control": {
         "unknown": true,
         "allow": true,
+        "many_to_point": true,
         "bandwidth": "value"
     }
 }
