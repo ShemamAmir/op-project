@@ -27,7 +27,7 @@ class get_json(object):
     ipv6_src = []
     ipv6_dst = []
     # we can use http://boubakr92.wordpress.com/2012/12/20/convert-cidr-into-ip-range-with-python/ or netaddr lib
-    for key, value in json_src_ip(): 
+    for key, value in json_src_ip.iteritems(): 
       ip_cidr = IPNetwork(str(value))
       ip = ip_cidr.ip,
       ip_network = ip_cidr.network
@@ -40,7 +40,7 @@ class get_json(object):
       ipv6_src.append(ip_cidr.ipv6())
      
     
-    for key, value in json_dst_ip():  
+    for key, value in json_dst_ip.iteritems():  
       ip_addr = IPAddress(str(value))
       ip = ip_cidr.ip,
       ip_network = ip_cidr.network
@@ -59,9 +59,9 @@ class get_json(object):
     tcp_dst = []
       #http://en.wikipedia.org/wiki/Transmission_Control_Protocol
       #TODO? SRC_PORT, DST_PORT, SEQ, ACK= ?
-    for key, value in json_src_tcp():
+    for key, value in json_src_tcp.iteritems():
       tcp_src.append(str(json_src_tcp))        
-    for key, value in json_dst_tcp():
+    for key, value in json_dst_tcp.iteritems():
       tcp_src.append(str(json_dst_tcp))      
       #http://ciscoiseasy.blogspot.com/2010/08/lesson-6-example-of-tcpip-traffic-flow.html
     return tcp_src, tcp_dst
@@ -71,9 +71,9 @@ class get_json(object):
     json_dst_mac = self.load_json()['address']['dst']['data_link_layer']['mac_address']
     mac_src = []
     mac_dst = []
-    for key, value in json_src_mac():
+    for key, value in json_src_mac.iteritems():
       mac_src.append(str(json_src_tcp))        
-    for key, value in json_dst_mac():
+    for key, value in json_dst_mac.iteritems():
       mac_src.append(str(json_dst_tcp))    
     return mac_src, mac_dst
       
@@ -82,9 +82,9 @@ class get_json(object):
     json_dst_port = self.load_json()['address']['dst']['physical_layer']['switch_dpid']
     port_src = []
     port_dst = []      
-    for key, value in json_src_port():
+    for key, value in json_src_port.iteritems():
       port_src.append(str(json_src_port))        
-    for key, value in json_dst_mac():
+    for key, value in json_dst_port.iteritems():
       port_src.append(str(json_dst_port))  
     return port_src, port_dst_list
     
