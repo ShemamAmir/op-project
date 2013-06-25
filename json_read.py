@@ -20,77 +20,66 @@ class get_json(object):
     return json_object
      
           
-  def get_ip(self):
-    json_src_ip = self.load_json()['address']['src']['network_layer']['ip_address']
-    json_dst_ip = self.load_json()['address']['dst']['network_layer']['ip_address']
-    #ip = json.dumps(json_ip, sort_keys=True, separators=(', ',': '))
-    ip_src_list = []
-    ip_dst_list = []
-    for key, value in json_src_ip.iteritems():
-    #test validation for src ip address
-      try:
-        socket.inet_aton(str(value))
-        ip_src_list.append(IPAddr(str(value)))
-        # legal
-      except socket.error:
-        print(value + 'it is not an valid IP Address')
-        # Not legal
-    for key, value in json_dst_ip.iteritems():
-    #test validation for src ip address
-      try:
-        socket.inet_aton(str(value))
-        ip_dst_list.append(IPAddr(str(value)))
-        # legal
-      except socket.error:
-        print(value + 'it is not an valid IP Address')
-        # Not legal
-    return ip_src_list, ip_dst_list
+  def get_ipv4(self):
+    json_src_ipv4 = self.load_json()['address']['src']['network_layer']['ipv4_address']
+    json_dst_ipv4 = self.load_json()['address']['dst']['network_layer']['ipv4_address']
+    ipv4_src = []
+    ipv4_dst = []
+    for key, value in json_src_ipv4.iteritems():
+      ipv4_src.append(IPAddr(str(value)))
+    for key, value in json_dst_ipv4.iteritems():
+      ipv4_dst.append(IPAddr(str(value)))
+    return ipv4_src, ipv4_dst
         
-    #test validation for dst ip address    
-    try:
-        socket.inet_aton(str(json_dst_ip))
-        ip_src_list.append(IPAddr(str(json_dst_ip))
-        # legal
-      except socket.error:
-        print(value + 'it is not an valid IP Address')
-        # Not legal    
+
+  def get_ipv6(self):
+    json_src_ipv6 = self.load_json()['address']['src']['network_layer']['ipv6_address']
+    json_dst_ipv6 = self.load_json()['address']['dst']['network_layer']['ipv6_address']
+    ipv6_src = []
+    ipv6_dst = []
+    for key, value in json_src_ipv6.iteritems():
+      ipv6_src.append(IPAddr(str(value)))
+    for key, value in json_dst_ipv6.iteritems():
+      ipv6_dst.append(IPAddr(str(value)))
+    return ipv6_src, ipv6_dst
+           
 
   
   def get_tcp(self):
     json_src_tcp = self.load_json()['address']['src']['transport_layer']['tcp_address']
     json_dst_tcp = self.load_json()['address']['dst']['transport_layer']['tcp_address']
-    tcp_src_list = []
-    tcp_dst_list = []
+    tcp_src = []
+    tcp_dst = []
       #http://en.wikipedia.org/wiki/Transmission_Control_Protocol
       #TODO? SRC_PORT, DST_PORT, SEQ, ACK= ?
     for key, value in json_src_tcp():
-      tcp_src_list.append(str(json_src_tcp))        
+      tcp_src.append(str(json_src_tcp))        
     for key, value in json_dst_tcp():
-      tcp_src_list.append(str(json_dst_tcp))      
+      tcp_src.append(str(json_dst_tcp))      
       #http://ciscoiseasy.blogspot.com/2010/08/lesson-6-example-of-tcpip-traffic-flow.html
-    return tcp_src_list, tcp_dst_list
+    return tcp_src, tcp_dst
       
   def get_mac(self):
     json_src_mac = self.load_json()['address']['src']['data_link_layer']['mac_address']
     json_dst_mac = self.load_json()['address']['dst']['data_link_layer']['mac_address']
-    mac_src_list = []
-    mac_dst_list = []
+    mac_src = []
+    mac_dst = []
     for key, value in json_src_mac():
-      mac_src_list.append(str(json_src_tcp))        
+      mac_src.append(str(json_src_tcp))        
     for key, value in json_dst_mac():
-      mac_src_list.append(str(json_dst_tcp))    
-    return mac_src_list, mac_dst_list
+      mac_src.append(str(json_dst_tcp))    
+    return mac_src, mac_dst
       
   def get_port(self):
     json_src_port = self.load_json()['address']['src']['physical_layer']['switch_dpid']
     json_dst_port = self.load_json()['address']['dst']['physical_layer']['switch_dpid']
-    port_src_list = []
-    port_dst_list = []      
+    port_src = []
+    port_dst = []      
     for key, value in json_src_port():
-      port_src_list.append(str(json_src_port))        
+      port_src.append(str(json_src_port))        
     for key, value in json_dst_mac():
-      port_src_list.append(str(json_dst_port))  
-    return port_src_list, port_dst_list
+      port_src.append(str(json_dst_port))  
+    return port_src, port_dst_list
     
 
   def check_unknown(self):
@@ -102,7 +91,7 @@ class get_json(object):
           
 
   def check_many(self):
-    if len(ip_src_list) > 1 or len(mac_src_list) > 1 or len(port_src_list) > 1 or len(tcp_src_list) > 1 :
+    if len(ipv4_src) > 1 or len(ipv6_src) > 1 or len(mac_src) > 1 or len(port_src) > 1 or len(tcp_src) > 1 :
       many_to_point = True
       self.load_json()['flow_control']['many_to_point'] = json.dumps(True)
     else:
