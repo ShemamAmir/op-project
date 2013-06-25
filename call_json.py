@@ -27,7 +27,7 @@ class get_json(object):
     ipv6_src = []
     ipv6_dst = []
     # we can use http://boubakr92.wordpress.com/2012/12/20/convert-cidr-into-ip-range-with-python/ or netaddr lib
-    for key, value in json_src_ip.iteritems():  
+    for key, value in json_src_ip.iteritems(): 
       ip_cidr = IPNetwork(str(value))
       ip = ip_cidr.ip,
       ip_network = ip_cidr.network
