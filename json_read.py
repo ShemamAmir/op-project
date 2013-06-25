@@ -91,7 +91,7 @@ class get_json(object):
 
   def check_unknown(self):
     #check the flow table 
-    if self.load_json()['flow_control']['unkown'] is True:
+    if self.load_json()['flow_control']['unknown'] is True:
       self.load_json()['flow_control']['allow'] = json.dumps(False)
     else:
       self.load_json()['flow_control']['allow'] = json.dumps(True)
