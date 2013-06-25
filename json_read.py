@@ -5,7 +5,6 @@
 import json
 from pox.lib.addresses import IPAddr, EthAddr
 from netaddr import *
-import socket
 import pox.lib.packet as pkt
 
 class get_json(object):
@@ -20,31 +19,40 @@ class get_json(object):
     return json_object
      
           
-  def get_ipv4(self):
-    json_src_ipv4 = self.load_json()['address']['src']['network_layer']['ipv4_address']
-    json_dst_ipv4 = self.load_json()['address']['dst']['network_layer']['ipv4_address']
+  def get_ip(self):
+    json_src_ip = self.load_json()['address']['src']['network_layer']['ip_address']
+    json_dst_ip = self.load_json()['address']['dst']['network_layer']['ip_address']
     ipv4_src = []
     ipv4_dst = []
-    for key, value in json_src_ipv4.iteritems():
-      ipv4_src.append(IPAddr(str(value)))
-    for key, value in json_dst_ipv4.iteritems():
-      ipv4_dst.append(IPAddr(str(value)))
-    return ipv4_src, ipv4_dst
-        
-
-  def get_ipv6(self):
-    json_src_ipv6 = self.load_json()['address']['src']['network_layer']['ipv6_address']
-    json_dst_ipv6 = self.load_json()['address']['dst']['network_layer']['ipv6_address']
     ipv6_src = []
     ipv6_dst = []
-    for key, value in json_src_ipv6.iteritems():
-      ipv6_src.append(IPAddr(str(value)))
-    for key, value in json_dst_ipv6.iteritems():
-      ipv6_dst.append(IPAddr(str(value)))
-    return ipv6_src, ipv6_dst
-           
+    # we can use http://boubakr92.wordpress.com/2012/12/20/convert-cidr-into-ip-range-with-python/ or netaddr lib
+    for key, value in json_src_ip.iteritems():  
+      ip_addr = IPAddress(str(value))
+      ip_cidr = IPNetwork(str(value))
+      ip = ip_cidr.ip,
+      ip_network = ip_cidr.network
+      ip_broadcast = ip_cidr.broadcast
+      ip_netmask = ip_cidr.netmask
+      ip_hostmask = ip_cidr.hostmask
+      ip_cidr = ip_cidr.size
+      
+      ipv4_src.append(IPAddr(ip_addr.ipv4()))
+      ipv6_src.append(IPAddr(ip_addr.ipv6()))
+     
+    
+    for key, value in json_dst_ip.iteritems():  
+      ip_addr = IPAddress(str(value))
+      ip = ip_cidr.ip,
+      ip_network = ip_cidr.network
+      ip_broadcast = ip_cidr.broadcast
+      ip_netmask = ip_cidr.netmask
+      ip_hostmask = ip_cidr.hostmask
+      ip_cidr = ip_cidr.size
+      ipv4_dst.append(IPAddr(ip_addr.ipv4()))
+      ipv6_dst.append(IPAddr(ip_addr.ipv6()))    
+    
 
-  
   def get_tcp(self):
     json_src_tcp = self.load_json()['address']['src']['transport_layer']['tcp_address']
     json_dst_tcp = self.load_json()['address']['dst']['transport_layer']['tcp_address']
