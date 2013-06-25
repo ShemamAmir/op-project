@@ -48,8 +48,8 @@ class get_json(object):
       ip_netmask = ip_cidr.netmask
       ip_hostmask = ip_cidr.hostmask
       ip_size = ip_cidr.size
-      ipv4_dst.append(ip_addr.ipv4()))
-      ipv6_dst.append(ip_addr.ipv6()))    
+      ipv4_dst.append(ip_addr.ipv4())
+      ipv6_dst.append(ip_addr.ipv6())    
     
 
   def get_tcp(self):
