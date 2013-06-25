@@ -27,7 +27,7 @@ class get_json(object):
     ipv6_src = []
     ipv6_dst = []
     # we can use http://boubakr92.wordpress.com/2012/12/20/convert-cidr-into-ip-range-with-python/ or netaddr lib
-    for key, value in json_src_ip.iteritems():  
+    for key, value in json_src_ip(): 
       ip_cidr = IPNetwork(str(value))
       ip = ip_cidr.ip,
       ip_network = ip_cidr.network
@@ -40,7 +40,7 @@ class get_json(object):
       ipv6_src.append(ip_cidr.ipv6())
      
     
-    for key, value in json_dst_ip.iteritems():  
+    for key, value in json_dst_ip():  
       ip_addr = IPAddress(str(value))
       ip = ip_cidr.ip,
       ip_network = ip_cidr.network
@@ -49,7 +49,7 @@ class get_json(object):
       ip_hostmask = ip_cidr.hostmask
       ip_size = ip_cidr.size
       ipv4_dst.append(ip_addr.ipv4())
-      ipv6_dst.append(ip_addr.ipv6())    
+      ipv6_dst.append(ip_addr.ipv6())
     
 
   def get_tcp(self):
@@ -91,7 +91,7 @@ class get_json(object):
 
   def check_unknown(self):
     #check the flow table 
-    if self.load_json()['flow_control']['unkown'] = True:
+    if self.load_json()['flow_control']['unkown'] is True:
       self.load_json()['flow_control']['allow'] = json.dumps(False)
     else:
       self.load_json()['flow_control']['allow'] = json.dumps(True)
@@ -106,9 +106,12 @@ class get_json(object):
       self.load_json()['flow_control']['many_to_point'] = json.dumps(False)      
 
       
+  
+
+      
 #When the flag: many_to_point = True
 
-class route_scheme(object,many_to_point = True):
+class route_scheme(object, many_to_point = True):
   
   def __init__(self, name):
     self.name = name
