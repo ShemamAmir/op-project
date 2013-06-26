@@ -106,28 +106,6 @@ class get_json(object):
       self.load_json()['flow_control']['many_to_point'] = json.dumps(False)      
 
       
-  
-
-      
-#When the flag: many_to_point = True
-
-class route_scheme(object, many_to_point is True):
-  
-  def __init__(self, name):
-    self.name = name
-          
-  def low_ult(self):
-  #utilization % = (data bits x 100) / (bandwidth x interval)
-    
-    
-  def low_rtt(self):
-  #lowest ping time
-  #make srcs ping with random order and set the rule by the ping time, dynamic rule
-    
-  def low_priority(self):
-  #define priority
-    
-    
     
     
     #check the format is ipv4, ipv6 or else
@@ -137,8 +115,6 @@ class route_scheme(object, many_to_point is True):
     #then the user can use get_src_ip(ipv4) to get ipv4
     #or get_src_ip(ipv6) to get ipv6
     #json.dump to import to the json file
-    
-    
     
   
   
