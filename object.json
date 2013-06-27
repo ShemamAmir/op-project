@@ -2,15 +2,14 @@
     "address": {
         "src": {
             "transport_layer": {
-                "tcp_address": {},
-                "dccp_address": {}
+                "tcp_address": {}
             },
             "network_layer": {
                     "ip_address": {}
                     
             },
             "data_link_layer": {
-                "value": {}
+                "ether_address": {}
             },
             "Physical layer": {
                 "swirch_dpid": {}
@@ -18,15 +17,14 @@
         },
         "dst": {
             "transport_layer": {
-                "tcp_address": {},
-                "dccp_address": {}
+                "tcp_address": {}               
             },
             "network_layer": {
                     "ip_address": {}
                     
             },
             "data_link_layer": {
-                "value": {}
+                "ether_address": {}
             },
             "Physical layer": {
                 "swirch_dpid": {}
