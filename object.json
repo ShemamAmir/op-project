@@ -9,7 +9,7 @@
                     
             },
             "data_link_layer": {
-                "ether_address": {}
+                "mac_address": {}
             },
             "Physical layer": {
                 "swirch_dpid": {}
@@ -24,7 +24,7 @@
                     
             },
             "data_link_layer": {
-                "ether_address": {}
+                "mac_address": {}
             },
             "Physical layer": {
                 "swirch_dpid": {}
