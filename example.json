@@ -2,45 +2,58 @@
     "address": {
         "src": {
             "transport_layer": {
-                "tcp_address": {"data-transfer-1.osu.edu": "unknown",
-                                "data-transfer-2.osu.edu": "unknown"},
-                                "data-transfer-3.osu.edu": "unknown"}  
-                                "data-transfer-4.osu.edu": "unknown"}
+                "tcp_address": {
+                    "data-transfer-1.osu.edu": "unknown",
+                    "data-transfer-2.osu.edu": "unknown",
+                    "data-transfer-3.osu.edu": "unknown",
+                    "data-transfer-4.osu.edu": "unknown"
+                }
             },
             "network_layer": {
-                    "ip_address": {"data-transfer-1.osu.edu": "fe80::ffff:ffff:ffff:ffff/24",
-                                   "data-transfer-2.osu.edu": "192.168.0.1"},
-                                   "data-transfer-3.osu.edu": "192.168.10.15/16"}  
-                                   "data-transfer-4.osu.edu": "192.168.10.54"}                                   
+                "ip_address": {
+                    "data-transfer-1.osu.edu": "fe80::ffff:ffff:ffff:ffff/24",
+                    "data-transfer-2.osu.edu": "192.16.0.1",
+                    "data-transfer-3.osu.edu": "192.168.10.15/16",
+                    "data-transfer-4.osu.edu": "192.168.10.54"
+                }
             },
             "data_link_layer": {
-                "mac_address": {"data-transfer-1.osu.edu": "00:A0:C6:10:C8:29",
-                                "data-transfer-2.osu.edu": "00:B0:D0:86:BB:F7"},
-                                "data-transfer-3.osu.edu": "00:A2:C3:07:C8:29"}  
-                                "data-transfer-4.osu.edu": "00:A3:C2:03:C2:29"} 
+                "mac_address": {
+                    "data-transfer-1.osu.edu": "00:A0:C6:10:C8:29",
+                    "data-transfer-2.osu.edu": "00:B0:D0:86:BB:F7",
+                    "data-transfer-3.osu.edu": "00:A2:C3:07:C8:29",
+                    "data-transfer-4.osu.edu": "00:A3:C2:03:C2:29"
+                }
             },
             "Physical layer": {
-                "swirch_dpid": {"data-transfer-1.osu.edu": "7000",
-                                "data-transfer-2.osu.edu": "6570"},
-                                "data-transfer-3.osu.edu": "2330"}  
-                                "data-transfer-4.osu.edu": "6300"} }
+                "swirch_dpid": {
+                    "data-transfer-1.osu.edu": "7000",
+                    "data-transfer-2.osu.edu": "6570",
+                    "data-transfer-3.osu.edu": "2330",
+                    "data-transfer-4.osu.edu": "6300"
+                }
+            }
+        }
+    },
+    "dst": {
+        "transport_layer": {
+            "tcp_address": {
+                "data-transfer-1.osu.edu": "unkown"
             }
         },
-        "dst": {
-            "transport_layer": {
-                "tcp_address": {"data-transfer-1.osu.edu": "unkown"}               
-            },
-            "network_layer": {
-                    "ip_address": {
-                                   "data-transfer-1.osu.edu": "192.168.33.101"}                        
-                    }
-                    
-            },
-            "data_link_layer": {
-                "mac_address": {"data-transfer-1.osu.edu": "00:A1:B2:03:02:E9"}
-            },
-            "Physical layer": {
-                "swirch_dpid": {"data-transfer-1.osu.edu": "3000"}
+        "network_layer": {
+            "ip_address": {
+                "data-transfer-1.osu.edu": "192.168.33.101"
+            }
+        },
+        "data_link_layer": {
+            "mac_address": {
+                "data-transfer-1.osu.edu": "00:A1:B2:03:02:E9"
+            }
+        },
+        "Physical layer": {
+            "swirch_dpid": {
+                "data-transfer-1.osu.edu": "3000"
             }
         }
     },
@@ -51,4 +64,3 @@
         "bandwidth": "value"
     }
 }
-
