@@ -16,6 +16,7 @@ class get_json(object):
   def load_json(self):
     json_data = open(self.name)
     json_object = json.load(json_data) #type: dict. 
+    print json_object
     return json_object
      
           
@@ -50,6 +51,7 @@ class get_json(object):
       ip_size = ip_cidr.size
       ipv4_dst.append(ip_addr.ipv4())
       ipv6_dst.append(ip_addr.ipv6())
+    print ipv4_src, ipv6_src, ipv4_dst, ipv6_dst
     
 
   def get_tcp(self):
@@ -64,6 +66,7 @@ class get_json(object):
     for key, value in json_dst_tcp.iteritems():
       tcp_src.append(str(json_dst_tcp))      
       #http://ciscoiseasy.blogspot.com/2010/08/lesson-6-example-of-tcpip-traffic-flow.html
+    print tcp_src, tcp_dst
     return tcp_src, tcp_dst
       
   def get_mac(self):
@@ -75,6 +78,7 @@ class get_json(object):
       mac_src.append(str(json_src_tcp))        
     for key, value in json_dst_mac.iteritems():
       mac_src.append(str(json_dst_tcp))    
+    print mac_src, mac_dst
     return mac_src, mac_dst
       
   def get_port(self):
@@ -86,6 +90,7 @@ class get_json(object):
       port_src.append(str(json_src_port))        
     for key, value in json_dst_port.iteritems():
       port_src.append(str(json_dst_port))  
+    print port_src, port_list
     return port_src, port_dst_list
     
 
