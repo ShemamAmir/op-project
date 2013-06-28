@@ -11,6 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""
+This component (which started in the carp branch) is a simple TCP load balancer.
+
+./pox.py misc.ip_loadbalancer --ip=<Service IP> --servers=<Server1 IP>,<Server2 IP>,...
+Give it a service_ip and a list of server IP addresses.  New TCP flows to the service IP will be randomly redirected to one of the server IPs.
+
+Servers are periodically probed to see if they're alive by sending them ARPs.
+"""
 
 """
 A very sloppy IP load balancer.
