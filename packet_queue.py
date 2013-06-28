@@ -19,7 +19,7 @@ class iplb (object):
   
   
   
-class lw_ult (object):
+class lw_ut (object):
 """
 find the route withleast connection among the multiple routes
 """
