@@ -7,8 +7,8 @@
       "destination_port": 17240,
       "source_ip": "131.187.118.27",
       "source_port": 49832,
-      "throughput": 668723125,
-      "transfer": 835928064
+      "bytes": 342,
+      "packets": 8
     }
   ]
 }
