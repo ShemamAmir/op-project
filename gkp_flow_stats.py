@@ -12,6 +12,7 @@ import json
 def gkp_list(event):
   data = open(flow_stats.json)
   data_object = json.load(json_data) #type: dict. 
+  data_object['port_id'] = event.dpid
   for foo in data_object['flow_id']:
     foo['destination_ip'] = event.match.nw_dst
     foo['destination_port'] = event.match.tp_dst
@@ -19,14 +20,7 @@ def gkp_list(event):
     foo['source_port'] = event.match.tp_src
     foo['bytes'] = bytes # not define yet
     foo['packets'] = packets# not define yet
-    
-    
-   
-
-  
-
-  
-
+ 
 
 def _timer_func ():
   for connection in core.openflow._connections.values():
@@ -56,5 +50,5 @@ def launch ():
   core.openflow.addListenerByName("PortStatsReceived", 
     _handle_portstats_received) 
 
-  # timer set to execute every five seconds
+  # timer set to execute every five minutes
   Timer(600, _timer_func, recurring=True)
