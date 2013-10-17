@@ -10,7 +10,21 @@ import json
 
 
 def gkp_list(event):
-  data = open(flow_stats.json)
+  #data = open(flow_stats.json)
+  json_data=json.dumps({
+  "flow_id": 123,
+  "time": "2012-07-01T13:01:00Z",
+  "results": [
+    {
+      "destination_ip": "131.187.127.16",
+      "destination_port": 17240,
+      "source_ip": "131.187.118.27",
+      "source_port": 49832,
+      "bytes": 342,
+      "packets": 8
+    }
+  ]
+  })
   data_object = json.load(json_data) #type: dict. 
   data_object['port_id'] = event.dpid
   for foo in data_object['flow_id']:
