@@ -5,8 +5,27 @@ from pox.lib.util import dpidToStr
 import pox.openflow.libopenflow_01 as of
 
 # include as part of the betta branch
-from pox.openflow.of_json import *
+#from pox.openflow.of_json import *
+import json
 
+
+def gkp_list(event):
+  data = open(flow_stats.json)
+  data_object = json.load(json_data) #type: dict. 
+  for foo in data_object['flow_id']:
+    foo['destination_ip'] = event.match.nw_dst
+    foo['destination_port'] = event.match.tp_dst
+    foo['source_ip'] = event.match.nw_src
+    foo['source_port'] = event.match.tp_src
+    foo['bytes'] = bytes # not define yet
+    foo['packets'] = packets# not define yet
+    
+    
+   
+
+  
+
+  
 
 
 def _timer_func ():
@@ -15,7 +34,7 @@ def _timer_func ():
     connection.send(of.ofp_stats_request(body=of.ofp_port_stats_request()))
     
 def _handle_flowstats_received (event):
-  stats = flow_stats_to_list(event.stats)
+  #stats = flow_stats_to_list(event.stats)
   bytes = 0
   flows = 0
   packet = 0
@@ -26,7 +45,7 @@ def _handle_flowstats_received (event):
       flows += 1
 
 def _handle_portstats_received (event):
-  stats = flow_stats_to_list(event.stats)
+  #stats = flow_stats_to_list(event.stats)
   
 def launch ():
   from pox.lib.recoco import Timer
@@ -38,4 +57,4 @@ def launch ():
     _handle_portstats_received) 
 
   # timer set to execute every five seconds
-  Timer(5, _timer_func, recurring=True)
+  Timer(600, _timer_func, recurring=True)
