@@ -32,8 +32,8 @@ def gkp_list(event):
     foo['destination_port'] = event.match.tp_dst
     foo['source_ip'] = event.match.nw_src
     foo['source_port'] = event.match.tp_src
-    foo['bytes'] = bytes # not define yet
-    foo['packets'] = packets# not define yet
+    foo['bytes'] = flowbytes # not define yet
+    foo['packets'] = flowpackets# not define yet
  
 
 def _timer_func ():
@@ -48,8 +48,8 @@ def _handle_flowstats_received (event):
   packet = 0
   
   for f in event.stats:
-      bytes += f.byte_count
-      packet += f.packet_count
+      flowbytes += f.byte_count
+      flowpacket += f.packet_count
       flows += 1
 
 def _handle_portstats_received (event):
@@ -65,4 +65,4 @@ def launch ():
     _handle_portstats_received) 
 
   # timer set to execute every five minutes
-  Timer(600, _timer_func, recurring=True)
+  Timer(300, _timer_func, recurring=True)
