@@ -43,9 +43,9 @@ def _timer_func ():
     
 def _handle_flowstats_received (event):
   #stats = flow_stats_to_list(event.stats)
-  bytes = 0
+  flowbytes = 0
   flows = 0
-  packet = 0
+  flowpacket = 0
   
   for f in event.stats:
       flowbytes += f.byte_count
