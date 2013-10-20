@@ -32,8 +32,8 @@ def gkp_list(event):
     foo['destination_port'] = event.match.tp_dst
     foo['source_ip'] = event.match.nw_src
     foo['source_port'] = event.match.tp_src
-    foo['bytes'] = flowbytes # not define yet
-    foo['packets'] = flowpackets# not define yet
+    foo['bytes'] = flowbytes+portbytes # not define yet
+    foo['packets'] = flowpackets+portpackets# not define yet
  
 
 def _timer_func ():
@@ -54,7 +54,14 @@ def _handle_flowstats_received (event):
 
 def _handle_portstats_received (event):
   #stats = flow_stats_to_list(event.stats)
+  portbytes = 0
+  ports = 0
+  portpacket = 0
   
+  for p in event.stats:
+      portbytes += p.byte_count
+      portpacket += p.packet_count
+      ports += 1
 def launch ():
   from pox.lib.recoco import Timer
 
