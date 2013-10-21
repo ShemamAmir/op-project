@@ -12,28 +12,31 @@ import json
 def gkp_list(event):
   #data = open(flow_stats.json)
   json_data=json.dumps({
-  "flow_id": 123,
-  "time": "2012-07-01T13:01:00Z",
+  "flow_id": 0,
+  "time": "000-00-00T00:00:00Z",
   "results": [
     {
-      "destination_ip": "131.187.127.16",
-      "destination_port": 17240,
-      "source_ip": "131.187.118.27",
-      "source_port": 49832,
-      "bytes": 342,
-      "packets": 8
+      "destination_ip": "0.0.0.0",
+      "destination_port": 0000,
+      "source_ip": "0.0.0.0",
+      "source_port": 0,
+      "flow_bytes": 0,
+      "flow_packets": 0,
+      "port_bytes": 0,
+      "port_packets": 0,
     }
   ]
   })
   data_object = json.load(json_data) #type: dict. 
   data_object['port_id'] = event.dpid
-  for foo in data_object['flow_id']:
+  for foo in data_object['results']:
     foo['destination_ip'] = event.match.nw_dst
     foo['destination_port'] = event.match.tp_dst
     foo['source_ip'] = event.match.nw_src
     foo['source_port'] = event.match.tp_src
     foo['bytes'] = flowbytes+portbytes # not define yet
     foo['packets'] = flowpackets+portpackets# not define yet
+  return data_object
  
 
 def _timer_func ():
