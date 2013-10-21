@@ -30,7 +30,7 @@ def gkp_list(event):
       "flow_bytes": 0,
       "flow_packets": 0,
       "port_bytes": 0,
-      "port_packets": 0,
+      "port_packets": 0
     }
   ]
   })
@@ -86,5 +86,5 @@ def launch ():
   core.openflow.addListenerByName("PortStatsReceived", 
     _handle_portstats_received) 
 
-  # timer set to execute every five minutes
-  Timer(300, _timer_func, recurring=True)
+  # timer set to execute every five minutes 30 sec to test
+  Timer(30, _timer_func, recurring=True)
