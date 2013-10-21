@@ -34,8 +34,11 @@ def gkp_list(event):
     foo['destination_port'] = event.match.tp_dst
     foo['source_ip'] = event.match.nw_src
     foo['source_port'] = event.match.tp_src
-    foo['bytes'] = flowbytes+portbytes # not define yet
-    foo['packets'] = flowpackets+portpackets# not define yet
+    foo['flow_bytes'] = flowbytes # not define yet
+    foo['flow_packets'] = flowpackets
+    foo['port_bytes'] = portbytes
+    foo['port_packets'] = portpackets# not define yet
+    
   return data_object
  
 
