@@ -3,12 +3,19 @@
 from pox.core import core
 from pox.lib.util import dpidToStr
 import pox.openflow.libopenflow_01 as of
+from datetime import datetime
+import pytz
+
 
 # include as part of the betta branch
 #from pox.openflow.of_json import *
 import json
+from datetime import datetime
 
-
+def timestamp_string():
+    string = datetime.isoformat(pytz.utc.localize(datetime.utcnow()))
+    return string
+    
 def gkp_list(event):
   #data = open(flow_stats.json)
   json_data=json.dumps({
@@ -29,6 +36,8 @@ def gkp_list(event):
   })
   data_object = json.load(json_data) #type: dict. 
   data_object['port_id'] = event.dpid
+  now = datetime.now()
+  date_object['time'] = timestamp_string()
   for foo in data_object['results']:
     foo['destination_ip'] = event.match.nw_dst
     foo['destination_port'] = event.match.tp_dst
