@@ -1,14 +1,16 @@
 {
-  "flow_id": 123,
-  "time": "2012-07-01T13:01:00Z",
+  "flow_id": 0,
+  "time": "000-00-00T00:00:00Z",
   "results": [
     {
-      "destination_ip": "131.187.127.16",
-      "destination_port": 17240,
-      "source_ip": "131.187.118.27",
-      "source_port": 49832,
-      "bytes": 342,
-      "packets": 8
+      "destination_ip": "0.0.0.0",
+      "destination_port": 0000,
+      "source_ip": "0.0.0.0",
+      "source_port": 0,
+      "flow_bytes": 0,
+      "flow_packets": 0,
+      "port_bytes": 0,
+      "port_packets": 0,
     }
   ]
-}
+  }
