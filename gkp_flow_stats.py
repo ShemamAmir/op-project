@@ -66,6 +66,14 @@ def _handle_flowstats_received (event):
       flowbytes += f.byte_count
       flowpacket += f.packet_count
       flows += 1
+      
+      
+''''def _handle_flowstats_received (self, event):
+    stats = flow_stats_to_list(event.stats)
+    log.debug("FlowStatsReceived from %s: %s",
+         dpidToStr(event.connection.dpid), stats)
+    for f in event.stats:
+         print stats''''
 
 def _handle_portstats_received (event):
   #stats = flow_stats_to_list(event.stats)
