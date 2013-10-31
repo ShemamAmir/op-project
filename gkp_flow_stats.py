@@ -1,5 +1,5 @@
 ''' Filling blanks: https://github.com/gordonyen/op-project/blob/master/flow_stats.json'''
-
+''' ./pox.py samples.pretty_log forwarding.l2_learning'''
 from pox.core import core
 from pox.lib.util import dpidToStr
 import pox.openflow.libopenflow_01 as of
@@ -60,22 +60,24 @@ def _timer_func ():
   for connection in core.openflow._connections.values():
     connection.send(of.ofp_stats_request(body=of.ofp_flow_stats_request()))
     connection.send(of.ofp_stats_request(body=of.ofp_port_stats_request()))
+  log.debug("Sent %i flow/port stats request(s)", len(core.openflow._connections))
     
 def _handle_flowstats_received (event):
 
   stats = flow_stats_to_list(event.stats)
-  log.debug("FlowStatsReceived from %s: %s",dpidToStr(event.connection.dpid), stats)
+  log.debug("FlowStatsReceived from %s: %s",
+  dpidToStr(event.connection.dpid), stats)
   for f in event.stats:
     print stats
   #stats = flow_stats_to_list(event.stats)
-  flowbytes = 0
-  flows = 0
-  flowpacket = 0
+  #flowbytes = 0
+  #flows = 0
+  #flowpacket = 0
   
-  for f in event.stats:
-      flowbytes += f.byte_count
-      flowpacket += f.packet_count
-      flows += 1
+  #for f in event.stats:
+  #    flowbytes += f.byte_count
+  #    flowpacket += f.packet_count
+  #    flows += 1
       
 
 
