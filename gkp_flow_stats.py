@@ -6,6 +6,11 @@ import pox.openflow.libopenflow_01 as of
 from datetime import datetime
 import pytz
 
+# include as part of the betta branch
+from pox.openflow.of_json import *
+
+log = core.getLogger()
+
 
 # include as part of the betta branch
 #from pox.openflow.of_json import *
@@ -57,6 +62,11 @@ def _timer_func ():
     connection.send(of.ofp_stats_request(body=of.ofp_port_stats_request()))
     
 def _handle_flowstats_received (event):
+
+  stats = flow_stats_to_list(event.stats)
+  log.debug("FlowStatsReceived from %s: %s",dpidToStr(event.connection.dpid), stats)
+  for f in event.stats:
+    print stats
   #stats = flow_stats_to_list(event.stats)
   flowbytes = 0
   flows = 0
@@ -67,24 +77,19 @@ def _handle_flowstats_received (event):
       flowpacket += f.packet_count
       flows += 1
       
-      
-''''def _handle_flowstats_received (self, event):
-    stats = flow_stats_to_list(event.stats)
-    log.debug("FlowStatsReceived from %s: %s",
-         dpidToStr(event.connection.dpid), stats)
-    for f in event.stats:
-         print stats''''
+
 
 def _handle_portstats_received (event):
+    
   #stats = flow_stats_to_list(event.stats)
   portbytes = 0
   ports = 0
   portpacket = 0
   
-  for p in event.stats:
-      portbytes += p.byte_count
-      portpacket += p.packet_count
-      ports += 1
+  #for p in event.stats:
+  #    portbytes += p.byte_count
+  #    portpacket += p.packet_count
+  #    ports += 1
 def launch ():
   from pox.lib.recoco import Timer
 
@@ -95,4 +100,4 @@ def launch ():
     _handle_portstats_received) 
 
   # timer set to execute every five minutes 30 sec to test
-  Timer(30, _timer_func, recurring=True)
+  Timer(5, _timer_func, recurring=True)
