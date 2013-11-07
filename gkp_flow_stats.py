@@ -18,26 +18,6 @@ import json
 from datetime import datetime
 
 log = core.getLogger()
-json_data=json.dumps({
-  "flow_id": 0,
-  "time": "000-00-00T00:00:00Z",
-  "results": [
-    {
-      "destination_ip": "0.0.0.0",
-      "destination_port": 0000,
-      "source_ip": "0.0.0.0",
-      "source_port": 0,
-      "flow_bytes": 0,
-      "flow_packets": 0,
-      "port_bytes": 0,
-      "port_packets": 0
-    }
-  ]
-  })
-data_object = json.loads(json_data) 
-
-
-
 
 def timestamp_string():
     string = datetime.isoformat(pytz.utc.localize(datetime.utcnow()))
@@ -85,24 +65,42 @@ def _timer_func ():
   log.debug("Sent %i flow/port stats request(s)", len(core.openflow._connections))
     
 def _handle_flowstats_received (event):
-
+  flowbyte=0
+  flowpacket=0
+  portbyte = 0
+  port = 0
+  portpacket = 0
   stats = flow_stats_to_list(event.stats)
   log.debug("FlowStatsReceived from %s: %s",
   dpidToStr(event.connection.dpid), stats)
-    #data = open(flow_stats.json)
-#type: dict. 
-#  data_object['port_id'] = event.dpid
-  now = datetime.now()
-  date_object['time'] = timestamp_string()
-  for foo in data_object['results']:
-    foo['destination_ip'] = event.match.nw_dst
-    foo['destination_port'] = event.match.tp_dst
-    foo['source_ip'] = event.match.nw_src
-    foo['source_port'] = event.match.tp_src
-    foo['flow_bytes'] = flowbytes # not define yet
-    foo['flow_packets'] = flowpackets
-    foo['port_bytes'] = portbytes
-    foo['port_packets'] = portpackets# not define yet
+  json_data=json.dumps({"flow_id": 0,
+  "time": "000-00-00T00:00:00Z",
+  "results": [
+    {
+      "destination_ip": "0.0.0.0",
+      "destination_port": 0000,
+      "source_ip": "0.0.0.0",
+      "source_port": 0,
+      "flow_bytes": 0,
+      "flow_packets": 0,
+      "port_bytes": 0,
+      "port_packets": 0
+    }
+  ]
+  })
+  data_object = json.loads(json_data) 
+  data_object['port_id'] = event.connection.dpid
+  data_object['time'] = timestamp_string()
+  for f in event.stats:
+    for foo in data_object['results']:
+      foo['destination_ip'] = f.match.nw_dst
+      foo['destination_port'] = f.match.tp_dst
+      foo['source_ip'] = f.match.nw_src
+      foo['source_port'] = f.match.tp_src
+      foo['flow_bytes'] = flowbyte # not define yet
+      foo['flow_packets'] = flowpacket
+      foo['port_bytes'] = portbyte
+      foo['port_packets'] = portpacket# not define yet
   print data_object
   #for f in event.stats:
   #  print stats
@@ -121,9 +119,10 @@ def _handle_flowstats_received (event):
 def _handle_portstats_received (event):
     
   #stats = flow_stats_to_list(event.stats)
-  portbytes = 0
-  ports = 0
+  portbyte = 0
+  port = 0
   portpacket = 0
+  return portbyte, port, portpacket
   
   #for p in event.stats:
   #    portbytes += p.byte_count
