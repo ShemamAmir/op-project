@@ -79,8 +79,8 @@ def _handle_flowstats_received (event):
     "destination_ip": "0.0.0.0",
     "destination_port": 0,
     "source_ip": "0.0.0.0",
-    "destination_MAC":"00:00:00:00:00:02"
-    "source_MAC":"00:00:00:00:00:01"
+    "destination_MAC":"00:00:00:00:00:02",
+    "source_MAC":"00:00:00:00:00:01",
     "source_port": 0,
     "flow_bytes": 0,
     "flow_packets": 0,
