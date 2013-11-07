@@ -97,13 +97,16 @@ def _handle_flowstats_received (event):
     sVar=sVar.replace("')",")'")
     sVar=sVar.replace("'",'"')
     preList=json.loads(sVar)
-    for foo in preList[0]:
+    proList=preList[0]
+    List=proList['match']
+    for foo in List:
       data_object['destination_ip'] = foo['get_nw_dst']
       data_object['destination_tcp'] = foo['get_tp_dst']
       data_object['destination_port']=foo['get_dl_dst']
       data_object['source_ip'] = foo['get_nw_src']
       data_object['source_tcp'] = foo['get_tp_src']
       data_object['source_port']=foo['get_dl_src']
+    for foo in proList:
       data_object['flow_bytes'] = foo['byte_count'] # not define yet
       data_object['flow_packets'] = foo['packet_count']
       data_object['port_bytes'] = portbyte
