@@ -1,27 +1,49 @@
 ''' Filling blanks: https://github.com/gordonyen/op-project/blob/master/flow_stats.json'''
-''' ./pox.py samples.pretty_log forwarding.l2_learning'''
+''' ./pox.py samples.pretty_log forwarding.l2_learning misc.gkp_flows
+the steps: 1. setup the network
+           2. setup port flow table, using dpctl, port1=h1=10.0.0.1
+           3. set h1 as HTTP server
+           4. h2 wget -O h1 %request
+           '''
 from pox.core import core
 from pox.lib.util import dpidToStr
 import pox.openflow.libopenflow_01 as of
 from datetime import datetime
 import pytz
-
 # include as part of the betta branch
 from pox.openflow.of_json import *
-
-log = core.getLogger()
-
-
 # include as part of the betta branch
 #from pox.openflow.of_json import *
 import json
 from datetime import datetime
 
+log = core.getLogger()
+json_data=json.dumps({
+  "flow_id": 0,
+  "time": "000-00-00T00:00:00Z",
+  "results": [
+    {
+      "destination_ip": "0.0.0.0",
+      "destination_port": 0000,
+      "source_ip": "0.0.0.0",
+      "source_port": 0,
+      "flow_bytes": 0,
+      "flow_packets": 0,
+      "port_bytes": 0,
+      "port_packets": 0
+    }
+  ]
+  })
+data_object = json.loads(json_data) 
+
+
+
+
 def timestamp_string():
     string = datetime.isoformat(pytz.utc.localize(datetime.utcnow()))
     return string
     
-def gkp_list(event):
+'''def gkp_list(event):
   #data = open(flow_stats.json)
   json_data=json.dumps({
   "flow_id": 0,
@@ -54,7 +76,7 @@ def gkp_list(event):
     foo['port_packets'] = portpackets# not define yet
     
   return data_object
- 
+'''
 
 def _timer_func ():
   for connection in core.openflow._connections.values():
@@ -67,8 +89,23 @@ def _handle_flowstats_received (event):
   stats = flow_stats_to_list(event.stats)
   log.debug("FlowStatsReceived from %s: %s",
   dpidToStr(event.connection.dpid), stats)
-  for f in event.stats:
-    print stats
+    #data = open(flow_stats.json)
+#type: dict. 
+#  data_object['port_id'] = event.dpid
+  now = datetime.now()
+  date_object['time'] = timestamp_string()
+  for foo in data_object['results']:
+    foo['destination_ip'] = event.match.nw_dst
+    foo['destination_port'] = event.match.tp_dst
+    foo['source_ip'] = event.match.nw_src
+    foo['source_port'] = event.match.tp_src
+    foo['flow_bytes'] = flowbytes # not define yet
+    foo['flow_packets'] = flowpackets
+    foo['port_bytes'] = portbytes
+    foo['port_packets'] = portpackets# not define yet
+  print data_object
+  #for f in event.stats:
+  #  print stats
   #stats = flow_stats_to_list(event.stats)
   #flowbytes = 0
   #flows = 0
