@@ -79,6 +79,8 @@ def _handle_flowstats_received (event):
     "destination_ip": "0.0.0.0",
     "destination_port": 0,
     "source_ip": "0.0.0.0",
+    "destination_MAC":"00:00:00:00:00:02"
+    "source_MAC":"00:00:00:00:00:01"
     "source_port": 0,
     "flow_bytes": 0,
     "flow_packets": 0,
@@ -99,88 +101,19 @@ def _handle_flowstats_received (event):
     preList=json.loads(sVar)
     proList=preList[0]
     List=proList['match']
-    for foo in List:
-      data_object['destination_ip'] = foo['get_nw_dst']
-      data_object['destination_tcp'] = foo['get_tp_dst']
-      data_object['destination_port']=foo['get_dl_dst']
-      data_object['source_ip'] = foo['get_nw_src']
-      data_object['source_tcp'] = foo['get_tp_src']
-      data_object['source_port']=foo['get_dl_src']
-    for foo in proList:
-      data_object['flow_bytes'] = foo['byte_count'] # not define yet
-      data_object['flow_packets'] = foo['packet_count']
-      data_object['port_bytes'] = portbyte
-      data_object['port_packets'] = portpacket# not define yet
-    print data_object
-    ''' [
-    {
-        "packet_count": 11,
-        "hard_timeout": 30,
-        "byte_count": 1870,
-        "duration_sec": 3,
-        "actions": [
-            {
-                "max_len": 0,
-                "type": "OFPAT_OUTPUT",
-                "port": 2
-            }
-        ],
-        "duration_nsec": 754000000,
-        "priority": 65535,
-        "idle_timeout": 10,
-        "cookie": 0,
-        "table_id": 0,
-        "match": {
-            "dl_type": "IP",
-            "nw_dst": "IPADDR(10.0.0.2)",
-            "tp_src": 80,
-            "dl_src": "00:00:00:00:00:01",
-            "nw_proto": 6,
-            "nw_tos": 0,
-            "tp_dst": 55679,
-            "get_nw_src": "10.0.0.1/32",
-            "get_nw_dst": "10.0.0.2/32",
-            "dl_dst": "00:00:00:00:00:02",
-            "dl_vlan": 65535,
-            "nw_src": "IPADDR(10.0.0.1)",
-            "in_port": 1
-        }
-    },
-    {
-        "packet_count": 9,
-        "hard_timeout": 30,
-        "byte_count": 700,
-        "duration_sec": 3,
-        "actions": [
-            {
-                "max_len": 0,
-                "type": "OFPAT_OUTPUT",
-                "port": 1
-            }
-        ],
-        "duration_nsec": 714000000,
-        "priority": 65535,
-        "idle_timeout": 10,
-        "cookie": 0,
-        "table_id": 0,
-        "match": {
-            "dl_type": "IP",
-            "nw_dst": "IPADDR(10.0.0.1)",
-            "tp_src": 55679,
-            "dl_src": "00:00:00:00:00:02",
-            "nw_proto": 6,
-            "nw_tos": 0,
-            "tp_dst": 80,
-            "get_nw_src": "10.0.0.2/32",
-            "get_nw_dst": "10.0.0.1/32",
-            "dl_dst": "00:00:00:00:00:01",
-            "dl_vlan": 65535,
-            "nw_src": "IPADDR(10.0.0.2)",
-            "in_port": 2
-        }
-    }
-]
-'''
+    data_object['destination_ip'] = List['get_nw_dst']
+    data_object['destination_tcp'] = List['tp_dst']
+    data_object['destination_MAC']=List['dl_dst']
+    data_object['source_ip'] = List['get_nw_src']
+    data_object['source_tcp'] = List['tp_src']
+    data_object['source_port']=List['in_port']
+    data_object['source_MAC']=List['dl_src']
+    data_object['flow_bytes'] = proList['byte_count'] # not define yet
+    data_object['flow_packets'] = proList['packet_count']
+    data_object['port_bytes'] = portbyte
+    data_object['port_packets'] = portpacket# not define yet
+  print data_object
+
   #stats = flow_stats_to_list(event.stats)
   #flowbytes = 0
   #flows = 0
